@@ -17,11 +17,14 @@ public class Character : MonoBehaviour
     public static int MaxExp = Level * 5;
     public static int Level = 1;
     private float expPercent;
-
     // Start is called before the first frame update
     void Start()
     {
     
+    }
+
+    void GetLevel()
+    {
     }
 
     // Update is called once per frame
