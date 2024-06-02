@@ -17,10 +17,12 @@ public class Character : MonoBehaviour
     public static int Level = 1;
     private float expPercent;
     private WeaponSelection weaponSelection;
+    private GameOver GameOver;
 
     void Start()
     {
         weaponSelection = FindObjectOfType<WeaponSelection>();
+        GameOver = FindObjectOfType<GameOver>(); 
     }
 
     void Update()
@@ -90,8 +92,7 @@ public class Character : MonoBehaviour
 
     void CharacterDead()
     {
-        gameObject.SetActive(false);
-        Time.timeScale = 0f;
+        GameOver.ShowGameOver();
     }
 
     private void HpBar()
@@ -142,6 +143,10 @@ public class Character : MonoBehaviour
         else if (selectedWeapon.weaponName == "AxeSpawner")
         {
             AxeSpawner.AxeLevel++;
+        }
+        else if (selectedWeapon.weaponName == "MaxHealth")
+        {
+            Health = 100;
         }
     }
 }
