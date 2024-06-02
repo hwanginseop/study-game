@@ -8,68 +8,66 @@ using UnityEngine.UI;
 public class Character : MonoBehaviour
 {
     public float moveSpeed = 3f;
-    Vector3 moveVector ;
+    Vector3 moveVector;
     public Image hpBarImage;
     public Image expBarImage;
-    public float Health = 100;
+    public int Health = 100;
     public static int Exp = 0;
     public static int MaxExp = Level * 5;
     public static int Level = 1;
     private float expPercent;
-    // Start is called before the first frame update
+    private WeaponSelection weaponSelection;
+
     void Start()
     {
-    
+        weaponSelection = FindObjectOfType<WeaponSelection>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         HpBar();
         ExpBar();
-        MoveTransform() ;
+        MoveTransform();
         if (Health < 1)
         {
-            CharaterDead();
+            CharacterDead();
         }
-        Levelup();
+        LevelUp();
     }
 
     void MoveTransform()
     {
-        moveVector = Vector3.zero ;
+        moveVector = Vector3.zero;
 
         if (Input.GetKey(KeyCode.W))
         {
-            moveVector += transform.up ;
+            moveVector += transform.up;
         }
         if (Input.GetKey(KeyCode.S))
         {
-            moveVector += -1 * transform.up ;
+            moveVector += -transform.up;
         }
-
         if (Input.GetKey(KeyCode.D))
         {
-            moveVector += transform.right ;   
+            moveVector += transform.right;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            moveVector += -1 * transform.right ;
+            moveVector += -transform.right;
         }
 
-        transform.position += moveVector.normalized * moveSpeed * Time.deltaTime  ;
-        
+        transform.position += moveVector.normalized * moveSpeed * Time.deltaTime;
     }
-    
-    void OnTriggerEnter2D(Collider2D other) 
+
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy")) 
+        if (other.CompareTag("Enemy"))
         {
-                StartCoroutine(TakeDamage());
+            StartCoroutine(TakeDamage());
         }
-        if (other.CompareTag("ExpObj")) 
+        if (other.CompareTag("ExpObj"))
         {
-                Exp += 1;
+            Exp += 1;
         }
     }
 
@@ -90,35 +88,60 @@ public class Character : MonoBehaviour
         }
     }
 
-    void CharaterDead()
+    void CharacterDead()
     {
-            gameObject.SetActive(false);
-            Time.timeScale = 0f;
+        gameObject.SetActive(false);
+        Time.timeScale = 0f;
     }
 
-    private void HpBar() {
+    private void HpBar()
+    {
         float hpPercent = Health / 100f;
         hpBarImage.fillAmount = hpPercent;
     }
 
-    private void ExpBar() {
+    private void ExpBar()
+    {
         if (Level >= 8)
         {
             expPercent = 1;
         }
         else
         {
-            expPercent = (float)Exp / (float)(Level*5);
+            expPercent = (float)Exp / (float)(Level * 5);
         }
         expBarImage.fillAmount = expPercent;
     }
 
-    private void Levelup()
+    private void LevelUp()
     {
-        if(expPercent == 1 && Level < 8)
+        if (expPercent == 1 && Level < 8)
         {
-            Level ++;
+            Level++;
             Exp = 0;
+            MaxExp = Level * 5;
+            weaponSelection.ShowUpgradePanel();
+        }
+    }
+
+    public void SetSelectedWeapon(WeaponSelection.Weapon selectedWeapon)
+    {
+        UpgradeWeapon(selectedWeapon);
+    }
+
+    private void UpgradeWeapon(WeaponSelection.Weapon selectedWeapon)
+    {
+        if (selectedWeapon.weaponName == "Sanctuary")
+        {
+            Sanctuary.SanctuaryLevel++;
+        }
+        else if (selectedWeapon.weaponName == "BulletSpawner")
+        {
+            BulletSpawner.BulletLevel++;
+        }
+        else if (selectedWeapon.weaponName == "AxeSpawner")
+        {
+            AxeSpawner.AxeLevel++;
         }
     }
 }

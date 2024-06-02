@@ -6,7 +6,7 @@ public class BulletSpawner : MonoBehaviour
 {
     [SerializeField] float spawnDelay = 5f;
     [SerializeField] int spawnAmount = 1;
-    [SerializeField] int weaponLevel = 1;
+    public static int BulletLevel = 1;
     [SerializeField] GameObject bulletObject;
 
     private void Start()
@@ -19,7 +19,7 @@ public class BulletSpawner : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(spawnDelay);
-            for (int i = 0; i < spawnAmount * weaponLevel; i++)
+            for (int i = 0; i < spawnAmount * BulletLevel; i++)
             {
                 SpawnObject();
             }

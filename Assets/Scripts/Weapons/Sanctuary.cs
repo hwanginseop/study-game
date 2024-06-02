@@ -3,7 +3,7 @@ using UnityEngine;
 public class Sanctuary : MonoBehaviour
 {
     float Timescale = 0;
-    int weaponLevel = 1; 
+    public static int SanctuaryLevel = 1; 
     GameObject player;
     void Start()
     {
@@ -14,15 +14,10 @@ public class Sanctuary : MonoBehaviour
     {
         transform.position = player.transform.position;
         Timescale += 1f * Time.deltaTime;
-        if (Timescale > 1.5f *  weaponLevel)
+        if (Timescale > 1.5f *  SanctuaryLevel)
         {
             Destroy(gameObject);
             Timescale = 0;
         }
-    }
-
-    public void LevelUp()
-    {
-        weaponLevel++;
     }
 }

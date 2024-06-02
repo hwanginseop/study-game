@@ -6,7 +6,7 @@ public class AxeSpawner : MonoBehaviour
 {
     [SerializeField] float spawnDelay = 5f;
     [SerializeField] int spawnAmount = 1;
-    [SerializeField] int weaponLevel = 1;
+    public static int AxeLevel = 1;
     [SerializeField] GameObject AxeObject;
 
     private void Start()
@@ -19,7 +19,7 @@ public class AxeSpawner : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(spawnDelay);
-            for (int i = 0; i < weaponLevel; i++)
+            for (int i = 0; i < AxeLevel; i++)
             {
                 SpawnObject();
             }
