@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4901611962837848597
+--- !u!1 &8196918044271696732
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3585854433321741944}
-  - component: {fileID: 7510494130956730638}
+  - component: {fileID: 417290941383135384}
+  - component: {fileID: -6123853087899803219}
   m_Layer: 0
-  m_Name: WeaponSpawner
+  m_Name: AxeSpwaner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3585854433321741944
+--- !u!4 &417290941383135384
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4901611962837848597}
+  m_GameObject: {fileID: 8196918044271696732}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,19 +32,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7510494130956730638
+--- !u!114 &-6123853087899803219
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4901611962837848597}
+  m_GameObject: {fileID: 8196918044271696732}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 694555ccf78e0a940b39a19949e0f61e, type: 3}
+  m_Script: {fileID: 11500000, guid: a98cc66ccfcff62459aa2c1b98dd4071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axePrefab: {fileID: 8196918044271696732, guid: 2ee8de31ad2297d44a27fa06324e0e23, type: 3}
-  bulletSpawnerPrefab: {fileID: 8196918044271696732, guid: bba35696235d8de4f908287fab00bd64, type: 3}
-  sanctuaryPrefab: {fileID: 8196918044271696732, guid: 8aa8ca744299de342baba963bd189b53, type: 3}
-  WeaponObjectName: 
+  spawnDelay: 5
+  spawnAmount: 1
+  weaponLevel: 1
+  bulletObject: {fileID: 5155438404635722608, guid: 0b78b967fdb54a54b978c6a179f70072, type: 3}

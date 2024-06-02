@@ -7,7 +7,6 @@ public class Axe : MonoBehaviour
     private Vector3 moveDirection; // 무기의 이동 방향
 
     float Timescale = 0;
-    int weaponLevel = 1; 
 
     private void Start()
     {
@@ -16,10 +15,7 @@ public class Axe : MonoBehaviour
 
     private void Update()
     {
-        for(int i = 0; i < weaponLevel;  i++)
-        {
-            MoveAxe();
-        }
+        MoveAxe();
         Timescale += 1f * Time.deltaTime;
     }
 
@@ -41,10 +37,5 @@ public class Axe : MonoBehaviour
         {
                 Destroy(gameObject);
         }
-    }
-
-    public void LevelUp()
-    {
-        weaponLevel++;
     }
 }

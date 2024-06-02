@@ -13,7 +13,7 @@ public class StrEnemySpawner : MonoBehaviour
     Enemy spawnedStrenemy;
     private void Update()
     {
-        if(EnemyManager.DeadCount == 2)
+        if(EnemyManager.DeadCount == 15)
         {
             StartCoroutine(SpawnStrbyTime());
             EnemyManager.DeadCount = 0;

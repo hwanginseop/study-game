@@ -2,10 +2,9 @@ using UnityEngine;
 
 public class Sanctuary : MonoBehaviour
 {
-    GameObject player = null;
     float Timescale = 0;
     int weaponLevel = 1; 
-
+    GameObject player;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -13,6 +12,7 @@ public class Sanctuary : MonoBehaviour
     
     private void Update()
     {
+        transform.position = player.transform.position;
         Timescale += 1f * Time.deltaTime;
         if (Timescale > 1.5f *  weaponLevel)
         {
