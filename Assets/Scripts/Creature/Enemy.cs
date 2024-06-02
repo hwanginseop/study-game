@@ -9,7 +9,6 @@ public class Enemy : MonoBehaviour
     float moveSpeed = 2f;
     Vector3 moveVector;
     public GameObject ExpObjectPrefab;
-    public int DeadCount = 0;
 
     void Start()
     {
@@ -34,13 +33,13 @@ public class Enemy : MonoBehaviour
         {
                 EnemyDead() ;
                 LeaveExp() ;
+                EnemyManager.DeadCount ++ ;
         }
     }
 
     void EnemyDead()
     {
         Destroy(gameObject);
-        DeadCount++;
     }
 
     GameObject LeaveExp() 

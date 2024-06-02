@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -8,11 +7,11 @@ using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 3f;
+    public float moveSpeed = 3f;
     Vector3 moveVector ;
     public Image hpBarImage;
     public Image expBarImage;
-    public int Health = 100;
+    public float Health = 100;
     public static int Exp = 0;
     public static int MaxExp = Level * 5;
     public static int Level = 1;
@@ -21,10 +20,6 @@ public class Character : MonoBehaviour
     void Start()
     {
     
-    }
-
-    void GetLevel()
-    {
     }
 
     // Update is called once per frame
@@ -37,6 +32,7 @@ public class Character : MonoBehaviour
         {
             CharaterDead();
         }
+        Levelup();
     }
 
     void MoveTransform()
@@ -47,7 +43,7 @@ public class Character : MonoBehaviour
         {
             moveVector += transform.up ;
         }
-        else if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S))
         {
             moveVector += -1 * transform.up ;
         }
@@ -56,7 +52,7 @@ public class Character : MonoBehaviour
         {
             moveVector += transform.right ;   
         }
-        else if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
             moveVector += -1 * transform.right ;
         }
@@ -70,6 +66,10 @@ public class Character : MonoBehaviour
         if (other.CompareTag("Enemy")) 
         {
                 StartCoroutine(TakeDamage());
+        }
+        if (other.CompareTag("ExpObj")) 
+        {
+                Exp += 1;
         }
     }
 
@@ -97,7 +97,7 @@ public class Character : MonoBehaviour
     }
 
     private void HpBar() {
-        float hpPercent = Health / 10f;
+        float hpPercent = Health / 100f;
         hpBarImage.fillAmount = hpPercent;
     }
 
@@ -108,8 +108,17 @@ public class Character : MonoBehaviour
         }
         else
         {
-            expPercent = (float)Exp / (float)((Level+1)*5);
+            expPercent = (float)Exp / (float)(Level*5);
         }
         expBarImage.fillAmount = expPercent;
+    }
+
+    private void Levelup()
+    {
+        if(expPercent == 1 && Level < 8)
+        {
+            Level ++;
+            Exp = 0;
+        }
     }
 }

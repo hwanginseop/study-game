@@ -2,44 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletSpwaner : MonoBehaviour
+public class BulletSpawner : MonoBehaviour
 {
-    [SerializeField] float spawnDelay = 2f;
+    [SerializeField] float spawnDelay = 5f;
     [SerializeField] int spawnAmount = 1;
-    [SerializeField] int WeaponLevel = 1;
+    [SerializeField] int weaponLevel = 1;
     [SerializeField] GameObject bulletObject;
+
     private void Start()
     {
-        StartCoroutine(SpawnbyTime());
+        StartCoroutine(SpawnByTime());
     }
 
-    IEnumerator SpawnbyTime()
+    IEnumerator SpawnByTime()
     {
-        while(true)
+        while (true)
         {
-            yield return new WaitForSeconds(spawnDelay);   
-            for (int i = 0; i < spawnAmount*WeaponLevel; i++)
+            yield return new WaitForSeconds(spawnDelay);
+            for (int i = 0; i < spawnAmount * weaponLevel; i++)
             {
                 SpawnObject();
             }
         }
     }
 
-    GameObject  SpawnObject()
+    GameObject SpawnObject()
     {
-        return Instantiate(bulletObject, GetSpawnPos(), Quaternion.identity);
+        GameObject bullet = Instantiate(bulletObject, GetSpawnPos(), Quaternion.identity);
+        // Bullet이 생성된 후 초기 위치에서 약간 이동
+        bullet.transform.position += bullet.transform.up * 0.5f; 
+        return bullet;
     }
 
     Vector3 GetSpawnPos()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        Vector3 spawnPosition = player.transform.position ;
+        Vector3 spawnPosition = player.transform.position;
 
         return spawnPosition;
     }
-    // Update is called once per frame
+
     void Update()
     {
         
     }
 }
+

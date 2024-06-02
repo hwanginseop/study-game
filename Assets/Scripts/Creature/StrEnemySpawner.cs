@@ -11,14 +11,12 @@ public class StrEnemySpawner : MonoBehaviour
     public List<Enemy> StrenemyList;
     GameObject spawnedStrenemyObj;
     Enemy spawnedStrenemy;
-    Enemy enemy;
-    private void Start()
+    private void Update()
     {
-        enemy = FindObjectOfType<Enemy>();//이렇게 가져오는거 맞나
-        if(enemy.DeadCount == 30)
+        if(EnemyManager.DeadCount == 2)
         {
             StartCoroutine(SpawnStrbyTime());
-            enemy.DeadCount = 0;
+            EnemyManager.DeadCount = 0;
         }
     }
 
@@ -49,8 +47,4 @@ public class StrEnemySpawner : MonoBehaviour
         return new Vector3(StrrandomX, StrrandomY, 0f);
     }
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

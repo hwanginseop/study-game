@@ -121,7 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdb7cd3acac5d9b4b95dcae2bba7a63c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSpeed: 3
+  hpBarImage: {fileID: 4240603206040056326, guid: bd750091ce4d08b4d83906495b2d93e1, type: 3}
+  expBarImage: {fileID: 1021498096233726985, guid: 493bc62523c826746b7d4918a675275b, type: 3}
   Health: 100
 --- !u!61 &6418498470792394283
 BoxCollider2D:
